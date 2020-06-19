@@ -62,6 +62,7 @@ $("#addExpBtn").click(function () {
         $("#expAmtTxtBox").val('');
         $("#expDescTxtBox").val('');
         refreshExpenses();
+        refreshBalance();
         return true;
     });
     return false;
@@ -103,10 +104,9 @@ function refreshExpenses() {
     $.get('/api/GetExpenses', function(data) {
         $("#expenseList").empty();
         $.each(data.expenses, function(index, exp) {
-            console.log(exp);
             if (exp.subtag == null)
                 exp.subtag = ""
-            $("#expenseList").append(`<li>${exp.amount}$ in ${exp.desc} (${exp.tag}, ${exp.subtag})</li>`)
+            $("#expenseList").append(`<li>${exp.amount}₹ in ${exp.desc} (${exp.tag}, ${exp.subtag})</li>`)
         });
     });
 }

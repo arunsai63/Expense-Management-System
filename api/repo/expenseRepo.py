@@ -68,7 +68,7 @@ class ExpenseRepo:
     def get_expenses(self):
         try:
             with connection.cursor() as curs:
-                curs.execute("select d.amount,d.description,t.tagtext,s.subtagtext from debits d join tags t on d.tagid = t.tagid left outer join subtags s on s.subtagid = d.subtagid;")
+                curs.execute("select d.amount,d.description,t.tagtext,s.subtagtext from debits d join tags t on d.tagid = t.tagid left outer join subtags s on s.subtagid = d.subtagid order by d.datedebited")
                 return curs.fetchall()
         except:
             return []

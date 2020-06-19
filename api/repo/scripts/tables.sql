@@ -1,5 +1,5 @@
 CREATE TABLE balance (
-    amount FLOAT NOT NULL DEFAULT 0 CHECK (amount >= 0)
+    amount FLOAT NOT NULL DEFAULT 0
 )
 
 CREATE TABLE tags(
@@ -27,7 +27,7 @@ CREATE TABLE credits (
     creditID SERIAL PRIMARY KEY,
     amount FLOAT NOT NULL,
     remainingBalance FLOAT NOT NULL,
-    description VARCHAR(2000) NOT NULL,
+    description VARCHAR(2000),
     dateCredited TIMESTAMP NOT NULL DEFAULT now(),
     tagID INTEGER REFERENCES tags(tagID)
 )
